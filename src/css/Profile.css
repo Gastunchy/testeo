@@ -1,0 +1,12 @@
+.card-profile {
+    width: 250px;
+    z-index: 999; 
+    margin-top: 100px;
+    font-family: "Biennale";
+}
+
+.card-profile-body {
+    width: 60px;
+    height: 60px; 
+    object-fit: cover;
+}

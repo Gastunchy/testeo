@@ -1,0 +1,8 @@
+.atos-container {
+    flex-grow: 1; 
+    font-family: 'Biennale'
+}
+
+.atos-width {
+    width: 350px;
+}

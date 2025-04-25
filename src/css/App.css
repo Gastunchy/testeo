@@ -1,0 +1,24 @@
+.bg-atos {
+    background-image: url("src/assets/Atos-Center.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.app-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    width: 100vw; /* Asegura que no se pase del ancho de la pantalla */
+    overflow-x: hidden; /* Evita cualquier desbordamiento lateral */
+}
+
+
+@media (max-width: 768px) {
+    .bg-atos {
+        background-size: cover; /* Evita que la imagen se corte */
+        background-position: center;
+        background-attachment: scroll;
+    }
+}
