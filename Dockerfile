@@ -1,20 +1,29 @@
-# Usa una imagen base de Node.js
-FROM node:16
+# Etapa 1: Construcción de la aplicación Node.js
+FROM node:14 AS build
 
-# Establece el directorio de trabajo en el contenedor
-WORKDIR /usr/src/app
+# Establecer el directorio de trabajo
+WORKDIR /app
 
-# Copia el archivo package.json y package-lock.json (si existe)
+# Copiar el package.json y package-lock.json
 COPY package*.json ./
 
-# Instala las dependencias
+# Instalar las dependencias
 RUN npm install
 
-# Copia el resto de los archivos de tu aplicación
+# Copiar los archivos de la aplicación
 COPY . .
 
-# Expone el puerto que tu aplicación utilizará
-EXPOSE 3000
+# Construir la aplicación (si es necesario)
+RUN npm run build
 
-# Comando para ejecutar tu aplicación
-CMD ["npm", "run", "dev"]
+# Etapa 2: Servir la aplicación con Nginx
+FROM nginx:alpine
+
+# Copiar los archivos construidos desde la etapa anterior
+COPY --from=build /app/dist /usr/share/nginx/html
+
+# Exponer el puerto 80
+EXPOSE 80
+
+# Comando por defecto para Nginx
+CMD ["nginx", "-g", "daemon off;"]
