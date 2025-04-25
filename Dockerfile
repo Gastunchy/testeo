@@ -1,6 +1,3 @@
-RUN npm run build
-
-# Etapa 2: Servir la aplicación con Nginx
 FROM nginx:alpine
 
 # Copiar los archivos construidos desde la etapa anterior
